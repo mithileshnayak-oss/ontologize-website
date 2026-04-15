@@ -211,66 +211,9 @@ function renderFrame(frame) {
     drawDisc(x, y, p.r, col[0], col[1], col[2], 0.9 * alpha);
   }
 
-  // logo reveal starts at ~45%
-  const logoT = Math.min(1, Math.max(0, (t - 0.42) / 0.2));
-  const logoAlpha = easeOut(logoT);
-  if (logoAlpha > 0) {
-    // center the logo composition
-    const cx = W / 2;
-    const cy = H / 2 - 30;
-    const scale = 2.2;
-
-    // small sky triangle (upper-left)
-    drawTriangle(
-      cx - 50 * scale, cy - 20 * scale,
-      cx - 20 * scale, cy - 40 * scale,
-      cx - 20 * scale, cy - 5 * scale,
-      46, 169, 224, logoAlpha
-    );
-    // small navy triangle (lower-right)
-    drawTriangle(
-      cx + 20 * scale, cy + 20 * scale,
-      cx + 50 * scale, cy + 5 * scale,
-      cx + 50 * scale, cy + 40 * scale,
-      28, 41, 71, logoAlpha
-    );
-    // left sky capsule
-    drawCapsule(
-      cx - 25 * scale, cy - 15 * scale,
-      16 * scale, 75 * scale,
-      46, 169, 224, logoAlpha
-    );
-    // right white capsule
-    drawCapsule(
-      cx + 10 * scale, cy - 50 * scale,
-      16 * scale, 75 * scale,
-      255, 255, 255, logoAlpha
-    );
-  }
-
-  // wordmark "AAVYA" at ~60%
-  const wordT = Math.min(1, Math.max(0, (t - 0.58) / 0.22));
-  if (wordT > 0) {
-    const wy = H / 2 + 180;
-    const s = 34;
-    const th = 7;
-    const spacing = 90;
-    const glyphs = [
-      { draw: drawChevron, x: W / 2 - spacing * 2 },
-      { draw: drawChevron, x: W / 2 - spacing * 1 },
-      { draw: drawVee,     x: W / 2 },
-      { draw: drawY,       x: W / 2 + spacing * 1 },
-      { draw: drawChevron, x: W / 2 + spacing * 2 },
-    ];
-    glyphs.forEach((g, i) => {
-      const localT = Math.min(1, Math.max(0, (wordT * glyphs.length - i)));
-      const a = easeOut(localT);
-      if (a > 0) g.draw(g.x, wy, s, th, 228, 230, 235, a);
-    });
-  }
-
-  // tagline "ontologize" fade in after wordmark
-  // skipping complex text — rely on wordmark alone
+  // Logo and wordmark are rendered as SVG overlays in the IntroSplash
+  // component (src/components/IntroSplash.tsx) using the official brand
+  // assets. The video only provides the particle background animation.
 
   // vignette / fade out
   if (t > 0.9) {
