@@ -14,7 +14,7 @@ export function Footer() {
           <div>
             <Logo />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-ink-300">
-              Aavya&apos;s Ontologize practice. Precision Ontology design,
+              Aavya&apos;s Ontology practice. Precision Ontology design,
               hands-on Palantir Foundry delivery, and training that builds
               lasting internal capability.
             </p>
@@ -57,7 +57,7 @@ export function Footer() {
 
         <div className="container-prose flex flex-col gap-4 py-8 text-xs text-ink-400 md:flex-row md:items-center md:justify-between">
           <p>
-            © {year} Aavya. ontoligize.aavya.com. Confidential &amp; proprietary.
+            © {year} Aavya. ontology.aavya.com. Confidential &amp; proprietary.
           </p>
           <div className="flex gap-6">
             <Link href="#">Privacy</Link>

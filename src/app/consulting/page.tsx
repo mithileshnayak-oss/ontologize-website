@@ -205,7 +205,7 @@ export default function ConsultingPage() {
             <div className="mt-10 space-y-4 text-sm text-ink-200">
               <div className="flex items-center gap-3">
                 <Mail size={16} className="text-mint-400" />
-                <a href="mailto:ontologize@aavya.com">ontologize@aavya.com</a>
+                <a href="mailto:ontology@aavya.com">ontology@aavya.com</a>
               </div>
               <div className="flex items-center gap-3">
                 <Phone size={16} className="text-mint-400" />

@@ -28,14 +28,14 @@ export function Logo({
     <Link
       href="/"
       className="group inline-flex items-center gap-3 text-ink-50"
-      aria-label="Ontologize by Aavya — home"
+      aria-label="Ontology by Aavya — home"
     >
       <AavyaMark size={36} variant={resolvedVariant} />
       {!compact && (
         <span className="flex flex-col leading-none">
           <AavyaWordmark className="h-[11px] w-auto" variant={resolvedVariant} />
           <span className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.28em] text-mint-400">
-            ontologize
+            ontology
           </span>
         </span>
       )}

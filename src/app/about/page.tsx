@@ -10,7 +10,7 @@ const leaders = [
   {
     name: "The Founding Partners",
     role: "Ex-Palantir Engineers",
-    bio: "Spent years inside Palantir's delivery engine shipping Foundry to the largest commercial and federal buyers. Ontologize is the practice we wished existed when we were on the client side.",
+    bio: "Spent years inside Palantir's delivery engine shipping Foundry to the largest commercial and federal buyers. Ontology is the practice we wished existed when we were on the client side.",
     expertise: ["Ontology architecture", "AIP deployment", "Federal delivery"],
   },
   {
@@ -36,7 +36,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-ink-900/50 to-ink-900" />
         <div className="container-prose">
           <Reveal>
-            <div className="eyebrow">About Aavya &middot; Ontologize</div>
+            <div className="eyebrow">About Aavya &middot; Ontology</div>
           </Reveal>
           <Reveal delay={0.08}>
             <h1 className="display mt-6 max-w-4xl text-[40px] leading-[1.05] md:text-[72px]">
@@ -46,7 +46,7 @@ export default function AboutPage() {
           <Reveal delay={0.16}>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-ink-200 md:text-xl">
               Aavya was founded on a specific frustration with how enterprise
-              technology consulting works. The Ontologize practice exists as a
+              technology consulting works. The Ontology practice exists as a
               deliberate alternative: former Palantir engineers, experienced
               data architects, and delivery leads who have operated inside some
               of the most demanding environments in the commercial and
@@ -75,7 +75,7 @@ export default function AboutPage() {
                 integrated operations.
               </p>
               <p>
-                We founded Ontologize to address that gap specifically. It
+                We founded Ontology to address that gap specifically. It
                 represents the convergence of two disciplines rarely combined
                 in the same organization: deep Palantir technical fluency and
                 the organizational change-management expertise that determines

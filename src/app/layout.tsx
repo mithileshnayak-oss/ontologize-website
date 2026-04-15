@@ -18,12 +18,12 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ontologize.Aavya — Palantir Foundry & Ontology Practice",
+  title: "Ontology.Aavya — Palantir Foundry & Ontology Practice",
   description:
-    "Aavya's Ontologize practice helps enterprises close the gap between the data they hold and the decisions they need to make — through precision Ontology design, hands-on Palantir Foundry delivery, and training that builds lasting internal capability.",
-  metadataBase: new URL("https://ontoligize.aavya.com"),
+    "Aavya's Ontology practice helps enterprises close the gap between the data they hold and the decisions they need to make — through precision Ontology design, hands-on Palantir Foundry delivery, and training that builds lasting internal capability.",
+  metadataBase: new URL("https://ontology.aavya.com"),
   openGraph: {
-    title: "Ontologize.Aavya",
+    title: "Ontology.Aavya",
     description:
       "Precision Ontology design, hands-on Palantir Foundry delivery, training that lasts.",
     type: "website",

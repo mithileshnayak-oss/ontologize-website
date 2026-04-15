@@ -24,7 +24,7 @@ export default function HomePage() {
           <Reveal>
             <div className="eyebrow flex items-center gap-3">
               <span className="inline-flex h-2 w-2 rounded-full bg-mint-400 shadow-[0_0_12px_#2CB67D]" />
-              ontoligize.aavya — Palantir Ontology &amp; Foundry practice
+              ontology.aavya — Palantir Ontology &amp; Foundry practice
             </div>
           </Reveal>
           <Reveal delay={0.08}>
@@ -34,7 +34,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-200 md:text-xl">
-              Aavya&apos;s Ontologize practice helps enterprises close the gap
+              Aavya&apos;s Ontology practice helps enterprises close the gap
               between the data they hold and the decisions they need to make —
               through precision Ontology design, hands-on Palantir Foundry
               delivery, and training that builds lasting internal capability.{" "}

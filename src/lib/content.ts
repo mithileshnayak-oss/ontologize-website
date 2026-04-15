@@ -1,7 +1,7 @@
 // Site-wide copy extracted from aavya_website_content_v2.docx
 export const site = {
-  name: "ontologize.aavya",
-  domain: "ontoligize.aavya.com",
+  name: "ontology.aavya",
+  domain: "ontology.aavya.com",
   parentBrand: "Aavya",
 };
 
