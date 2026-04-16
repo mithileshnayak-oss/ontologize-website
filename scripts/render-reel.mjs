@@ -14,7 +14,7 @@
  */
 
 import { spawn } from "node:child_process";
-import { createCanvas, GlobalFonts } from "@napi-rs/canvas";
+import { createCanvas, GlobalFonts, Path2D } from "@napi-rs/canvas";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -244,33 +244,28 @@ function drawMaskReveal(text, x, y, size, progress, color = "#E4E6EB", weight = 
   ctx.fillText(text, x, y);
   ctx.restore();
 }
+// Official Aavya mark SVG path data (viewBox 0 0 134 134, natural size).
+// - Upper half (white on dark)  — two disjoint sub-paths
+// - Lower half (cyan #3AADDD)   — two disjoint sub-paths
+const AAVYA_MARK_UPPER = "M26.6171 89.5911H9.50832C6.10069 89.5783 3.37355 87.6956 1.52465 84.7493C-0.324258 81.8031 -0.504018 78.1798 1.05343 75.2463L9.51346 59.308L26.6171 89.5911ZM36.6911 8.99605L38.9598 4.72382C40.5545 1.7174 43.7208 -0.0923531 47.2131 0.00363764C50.7068 0.0996283 53.968 2.08728 55.7181 5.18458L98.198 80.3952C99.3073 82.3585 99.3381 84.702 98.2789 86.5808C97.2196 88.4584 95.2243 89.5988 93.012 89.5911H82.1921L36.6911 8.99605Z";
+const AAVYA_MARK_LOWER = "M83.8755 124.111L81.608 128.383C80.0121 131.389 76.8458 133.199 73.3534 133.103C69.8598 133.007 66.5985 131.02 64.8485 127.922L22.3686 52.7116C21.2593 50.7482 21.2297 48.4048 22.2877 46.5259C23.347 44.6484 25.3423 43.508 27.5545 43.5157H38.3745L83.8755 124.111ZM93.9495 43.5157H111.058C114.466 43.5285 117.193 45.4112 119.042 48.3574C120.891 51.3037 121.071 54.927 119.513 57.8605L111.054 73.7988L93.9495 43.5157Z";
+
 function drawLogoMark(cx, cy, scale, alpha = 1) {
+  // Render the official Aavya mark.
+  // Natural mark size is 134x134; we scale it so the old `scale` param
+  // maps to roughly the same visual footprint (scale=2 ≈ 170px tall).
   ctx.save();
   ctx.globalAlpha = alpha;
-  // sky triangle (top-left)
-  ctx.fillStyle = "#2EA9E0";
-  ctx.beginPath();
-  ctx.moveTo(cx - 60 * scale, cy - 18 * scale);
-  ctx.lineTo(cx - 22 * scale, cy - 42 * scale);
-  ctx.lineTo(cx - 22 * scale, cy - 2 * scale);
-  ctx.closePath();
-  ctx.fill();
-  // navy triangle (bottom-right)
-  ctx.fillStyle = "#1C2947";
-  ctx.beginPath();
-  ctx.moveTo(cx + 22 * scale, cy + 20 * scale);
-  ctx.lineTo(cx + 60 * scale, cy + 2 * scale);
-  ctx.lineTo(cx + 60 * scale, cy + 42 * scale);
-  ctx.closePath();
-  ctx.fill();
-  // left sky capsule
-  roundedRect(cx - 28 * scale, cy - 22 * scale, 18 * scale, 80 * scale, 9 * scale);
-  ctx.fillStyle = "#2EA9E0";
-  ctx.fill();
-  // right white capsule
-  roundedRect(cx + 10 * scale, cy - 56 * scale, 18 * scale, 80 * scale, 9 * scale);
+  const size = 134 * scale * 0.6;
+  const s = size / 134;
+  ctx.translate(cx - size / 2, cy - size / 2);
+  ctx.scale(s, s);
+  // Upper half — white
   ctx.fillStyle = "#FFFFFF";
-  ctx.fill();
+  ctx.fill(new Path2D(AAVYA_MARK_UPPER));
+  // Lower half — cyan
+  ctx.fillStyle = "#3AADDD";
+  ctx.fill(new Path2D(AAVYA_MARK_LOWER));
   ctx.restore();
 }
 function roundedRect(x, y, w, h, r) {
@@ -520,7 +515,7 @@ function scene_CTA(tSec) {
   ctx.fillText("Book a Discovery Call  →", W / 2, by + bh / 2);
   ctx.restore();
 
-  drawCaption("ontoligize.aavya.com", W / 2, 580, 16, alpha, "#9C93BC", "center");
+  drawCaption("ontology.aavya.com", W / 2, 580, 16, alpha, "#9C93BC", "center");
 }
 
 function scene_Outro(tSec) {
