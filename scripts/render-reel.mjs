@@ -20,6 +20,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = join(__dirname, "..", "public", "reel.mp4");
+const MUSIC = join(__dirname, "..", "public", "reel-music.m4a");
 
 // Use system fonts (Helvetica is always present on macOS). We name-fallback on .ttc.
 try {
@@ -553,13 +554,21 @@ function renderFrame(frame) {
 }
 
 // ---------- encode
-const ff = spawn("ffmpeg", [
+import { existsSync } from "node:fs";
+const hasMusic = existsSync(MUSIC);
+
+const ffArgs = [
   "-y",
   "-f", "rawvideo",
   "-pix_fmt", "rgba",
   "-s", `${W}x${H}`,
   "-r", String(FPS),
   "-i", "pipe:0",
+];
+if (hasMusic) {
+  ffArgs.push("-i", MUSIC);
+}
+ffArgs.push(
   "-c:v", "libx264",
   "-preset", "slow",
   "-crf", "19",
@@ -567,9 +576,21 @@ const ff = spawn("ffmpeg", [
   "-movflags", "+faststart",
   "-profile:v", "high",
   "-tune", "film",
-  "-an",
-  OUT,
-], { stdio: ["pipe", "inherit", "inherit"] });
+);
+if (hasMusic) {
+  ffArgs.push(
+    "-c:a", "aac",
+    "-b:a", "128k",
+    "-map", "0:v:0",
+    "-map", "1:a:0",
+    "-shortest",
+  );
+} else {
+  ffArgs.push("-an");
+}
+ffArgs.push(OUT);
+
+const ff = spawn("ffmpeg", ffArgs, { stdio: ["pipe", "inherit", "inherit"] });
 
 (async () => {
   const start = Date.now();
